@@ -83,6 +83,17 @@ $ pyenv virtualenv 3.7.4 venv_project1
 $ pyenv versions
 ```
 
+При возникновении ошибки типа
+```
+UserWarning: Could not import the lzma module. Your installed Python is incomplete. Attempting to use lzma compression will result in a RuntimeError.
+  warnings.warn(msg)
+```
+Небходимо установить модуль
+```bash
+$ sudo apt-get install liblzma-dev
+```
+и заново переустановить версию Python.
+
 # python-packages
 ## Jupyter-notebook
 
