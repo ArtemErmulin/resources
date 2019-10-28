@@ -9,6 +9,7 @@
 ```bash
 $ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev
 $ sudo apt install libffi-dev
+$ sudo apt-get install liblzma-dev
 ```
 
 Клонируем последнюю актуальную версию с github:
