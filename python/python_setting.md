@@ -8,6 +8,7 @@
 Для Debian / Ubuntu / Linux Mint
 ```bash
 $ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev
+$ sudo apt install libffi-dev
 ```
 
 Клонируем последнюю актуальную версию с github:
