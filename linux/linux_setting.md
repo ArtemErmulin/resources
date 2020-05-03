@@ -73,3 +73,17 @@ $ source ~/.local/bin/bashmarks.sh
 ## fzf
 [GitHub](https://github.com/junegunn/fzf#usage)
 
+# SSH
+## Настройка
+В папке ~/.ssh/ создать конфигурационный файл `config`, где можно прописать параметры всех SSH соединений:
+```
+Host host_name
+  HostName host_name_ip
+  user user_name
+  IdentityFile path/to/ssh/pub/key
+```
+## Настройка доступа ssh без подтверждения пароля
+Нужно указать в конфигурационном файле параметр `IdentityFile`, после скопировать свой публичный ключ на удаленный сервер командой:
+```
+ssh host_name 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+```
