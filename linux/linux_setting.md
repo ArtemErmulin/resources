@@ -87,3 +87,17 @@ Host host_name
 ```
 ssh host_name 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 ```
+
+# Исправление работы WiFi
+При периодическом отключении интернета через WiFi, выполнить команды:
+- Get details of your PCI wireless card by running the following
+```bash
+sudo lshw -class network
+```
+- Get your card model info according to the product line of the wireless interface. For instance, as you can see in the question description it says product: `RTL8723BE PCIe Wireless Network Adapter` so the model of my card is `RTL8723BE`
+
+- Open or create `/etc/pm/config.d/config` and add `SUSPEND_MODULES="rtl8723be"` (replace `rtl8723be` with your own model number) Then run
+```bash
+echo "options rtl8723be fwlps=N" | sudo tee /etc/modprobe.d/rtl8723be.conf
+```
+and reboot.
