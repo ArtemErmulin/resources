@@ -101,3 +101,6 @@ sudo lshw -class network
 echo "options rtl8723be fwlps=N" | sudo tee /etc/modprobe.d/rtl8723be.conf
 ```
 and reboot.
+
+# Исправление работы разъёма для наушников (на ноутбуке)
+[Headphone jack not working?](https://askubuntu.com/a/831453/1109255)
