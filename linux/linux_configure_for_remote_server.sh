@@ -19,6 +19,8 @@ cd
 echo $'# bashmarks\nsource ~/.local/bin/bashmarks.sh\n' >> ~/.bashrc
 
 echo '### install pyenv and python version ###'
+sudo apt install build-essential -y
+sudo apt install libssl-dev -y
 sudo apt install gcc -y
 sudo apt install curl -y
 sudo apt install git-core -y
@@ -30,6 +32,12 @@ sudo apt install libsqlite3-dev -y
 sudo apt install libssl-dev -y
 sudo apt install libffi-dev -y
 sudo apt install liblzma-dev -y
+sudo apt install llvm -y
+sudo apt install libncurses5-dev -y
+sudo apt install libncursesw5-dev -y
+sudo apt install xz-utils -y
+sudo apt install tk-dev -y
+sudo apt install python-openssl -y
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 git clone https://github.com/yyuu/pyenv-virtualenv.git   $HOME/.pyenv/plugins/pyenv-virtualenv
 echo $'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
