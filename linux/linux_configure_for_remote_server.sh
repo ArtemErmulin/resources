@@ -19,6 +19,7 @@ cd
 echo $'# bashmarks\nsource ~/.local/bin/bashmarks.sh\n' >> ~/.bashrc
 
 echo '### install pyenv and python version ###'
+sudo apt install gcc -y
 sudo apt install curl -y
 sudo apt install git-core -y
 sudo apt install gcc -y
@@ -42,6 +43,7 @@ sed -i 's/alias l=/#alias l=/g' ~/.bashrc
 
 source ~/.bashrc
 
+echo '### install python 3.7.9 ###'
 pyenv install 3.7.7
 pyenv global 3.7.7
 pip install --upgrade pip
