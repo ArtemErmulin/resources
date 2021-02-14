@@ -11,7 +11,7 @@ from plotly.offline import init_notebook_mode, iplot, plot
 
 def plot_plotly(
     dataf: pd.DataFrame,
-    col_names="",
+    col_names=None,
     title="",
     labels=None,
     x_label="",
@@ -25,11 +25,11 @@ def plot_plotly(
     width=None,
     height=None,
     auto_open=True,
-    annotations=[],
+    annotations=None,
     y2_label="",
-    linewiths=[2],
-    x_range=[],
-    y_range=[],
+    linewiths=None,
+    x_range=None,
+    y_range=None,
     png_name=None,
 ):
     """
@@ -74,9 +74,13 @@ def plot_plotly(
         График в формате html, или график в Jupyter Notebook.
 
     """
+    annotations = annotations or []
+    linewiths = linewiths or [2]
+    x_range = x_range or []
+    y_range = y_range or []
 
-    # проверить, является ли dataf pd.DataFrame
-    is_pandas_df(dataf)
+    if not isinstance(dataf, pd.DataFrame):
+        raise ValueError("`dataf` is not pd.DataFrame.")
 
     # проверяем названия столбцов (по умолчанию строим по всем столбцам)
     if not col_names:
@@ -105,10 +109,10 @@ def plot_plotly(
     # проверить, необходимо ли построить график на двух разных осях y
     if multiaxis:
         if len(col_names) > 2:
-            print("Error!")
-            print("Number of multiaxis is 2!")
-            raise SystemExit(2)
+            raise ValueError("Required number of multiaxis is 2")
+
         yaxis = ["y", "y2"]
+
     else:
         yaxis = ["y"] * len(col_names)
 
@@ -143,6 +147,7 @@ def plot_plotly(
 
     if x_range:
         layout["xaxis"]["range"] = x_range
+
     if y_range:
         layout["yaxis"]["range"] = y_range
 
@@ -154,9 +159,11 @@ def plot_plotly(
 
     if legend:
         layout["legend"] = legend
+
     # создаем фигуру
     fig = go.Figure(data=data, layout=layout)
     fig.update_layout(legend_orientation="h")
+
     # проверяем, где необходимо построить график:
     # в строке, или сохранить в файл
     if in_jnb:
@@ -165,17 +172,10 @@ def plot_plotly(
         # необходимо подклюить режим notebook
         init_notebook_mode(connected=True)
         iplot(fig, show_link=False, config={"scrollZoom": True})
+
     # если указано название имени картинок в формате `*.png`
     elif png_name:
         pio.write_image(fig, png_name, width=800, height=500)
+
     else:
         plot(fig, filename=file_name, auto_open=auto_open, config={"scrollZoom": True})
-
-
-def is_pandas_df(dataf):
-    """
-    Функция проверки, является ли переменная pandas.DataFrame или нет
-    """
-    if not isinstance(dataf, pd.DataFrame):
-        print("`dataf` is not pd.DataFrame.")
-        raise SystemExit(1)
