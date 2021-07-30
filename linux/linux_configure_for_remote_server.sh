@@ -44,6 +44,7 @@ echo $'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo $'export PATH="$PYENV_ROOT/bin:$PATH"\n' >> ~/.bashrc
 echo $'if command -v pyenv 1>/dev/null 2>&1; then' >> ~/.bashrc
 echo $'  eval "$(pyenv init --path)"' >> ~/.bashrc
+echo $'  eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 echo $'fi' >> ~/.bashrc
 
 echo '### remove conflict alias ###'
