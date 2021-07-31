@@ -104,3 +104,21 @@ and reboot.
 
 # Исправление работы разъёма для наушников (на ноутбуке)
 [Headphone jack not working?](https://askubuntu.com/a/831453/1109255)
+
+# Работа с пользователями
+[Шпаргалка](https://www.dmosk.ru/miniinstruktions.php?mini=linux-users)
+
+Добавление нового пользователя с правами администратора
+```bash
+sudo useradd usr -s /bin/bash -g sudo -d /home/username/
+```
+
+Удаление
+```bash
+sudo userdel -f username
+```
+
+Задание пароля
+```bash
+passwd username
+```
