@@ -12,7 +12,8 @@ git config --global user.name ArtemErmulin
 git config --global user.email artem.ermulin@ya.ru
 
 echo '### install \'bashmarks\' ###'
-git clone git://github.com/huyng/bashmarks.git ~/Downloads/bashmarks
+mkdir ~/Documents/proj
+git clone https://github.com/parroty/bashmarks.git ~/Documents/proj/bashmarks
 cd ~/Downloads/bashmarks
 make install
 cd
@@ -37,7 +38,6 @@ sudo apt install libncurses5-dev -y
 sudo apt install libncursesw5-dev -y
 sudo apt install xz-utils -y
 sudo apt install tk-dev -y
-sudo apt install python-openssl -y
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 git clone https://github.com/yyuu/pyenv-virtualenv.git   $HOME/.pyenv/plugins/pyenv-virtualenv
 echo $'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
