@@ -17,7 +17,7 @@ git clone https://github.com/parroty/bashmarks.git ~/Documents/proj/bashmarks
 cd ~/Downloads/bashmarks
 make install
 cd
-echo $'# bashmarks\nsource ~/.local/bin/bashmarks.sh\n' >> ~/.bashrc
+echo $'# bashmarks\nsource ~/Documents/bashmarks/bashmarks.sh\n' >> ~/.bashrc
 
 echo '### install pyenv and python version ###'
 sudo apt install build-essential -y
@@ -52,7 +52,7 @@ sed -i 's/alias l=/#alias l=/g' ~/.bashrc
 
 source ~/.bashrc
 
-echo '### install python 3.7.9 ###'
-pyenv install 3.7.7
-pyenv global 3.7.7
+echo '### install python 3.10.16 ###'
+pyenv install 3.10.16
+pyenv global 3.10.16
 pip install --upgrade pip
