@@ -27,7 +27,7 @@ $ xrandr --output Virtual1 --mode 1920x1080_60.00
 
 ## Установка
 
-Сначала необходимо скачать `*.bundle` с [официального сайта VMWare](www.yandex.ru).
+Сначала необходимо скачать `*.bundle` с [официального сайта VMWare](https://softwareupdate.vmware.com/cds/vmw-desktop/).
 
 После того как вы скачаете установщик, нужно установить заголовочные файлы ядра (если еще не установлены).
 
@@ -48,6 +48,41 @@ $ sudo gksudo bash ~/Downloads/VMware-Player-12.5.1-4542065.x86_64.bundle
 $ sudo chmod +x ~/Downloads/VMware-Player-12.5.1-4542065.x86_64.bundle
 $ sudo ~/Downloads/VMware-Player-12.5.1-4542065.x86_64.bundle
 ```
+
+## Ошибка `vmmon`
+
+There is a lot of posts about the missing vmmon, but this one always bites me after I update ubuntu kernel, and then I forget every time :)
+
+From: https://kb.vmware.com/s/article/1002411
+
+```bash
+vmware-modconfig --console --install-all
+```
+
+EDIT- I also have to do the following now on Ubuntu:
+
+"First line only needs to be run once:
+
+```bash
+openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
+sudo mokutil --import MOK.der
+```
+
+Then reboot and if memory serves you will asked to confirm a change to your boot loader. Essentially you are adding this self created cert to the boot loader.
+
+```bash
+sudo /usr/src/linux-headers-uname -r/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)
+
+sudo /usr/src/linux-headers-uname -r/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmnet)
+
+sudo modprobe -v vmmon
+
+sudo modprobe -v vmnet
+
+sudo vmware-networks --start
+```
+
+You need to have the very latest version of workstation/player/viewer if you upgrade your kernel Workstation builds modules, and often the build process breaks if there are kernel changes. So if you are having problems first make sure you have the latest version of workstation https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html
 
 ## Удаление
 
